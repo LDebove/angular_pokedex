@@ -1,5 +1,5 @@
-<mat-list role="list" infinite-scroll (scrolled)="onScroll()">
-  <mat-list-item *ngFor="let pokemon of pagedData?.data" role="listitem" routerLink="/pokemon-detail/{{pokemon.id}}">
+<mat-list class="scrollable" role="list" infinite-scroll [scrollWindow]="false" (scrolled)="onScroll()">
+  <mat-list-item *ngFor="let pokemon of pagedData?.data" role="listitem" routerLink="/pokedex/{{pokemon.id}}">
     <img matListItemAvatar [src]="'assets/img/official-artwork/' + pokemon.id + '.png'"/>
     <span MatListItemTitle>{{pokemon.id}}. {{pokemon.name}}</span>
   </mat-list-item>

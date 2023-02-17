@@ -21,6 +21,7 @@ export class PokemonListComponent implements AfterViewInit {
   }
 
   onScroll(): void {
+    console.log('onScroll');
     this.pokedex.getPokemons(10, this.pagedData?.data.length).subscribe({
       next: (pagedData) => {
         if(this.pagedData) {
