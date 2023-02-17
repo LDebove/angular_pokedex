@@ -1,0 +1,45 @@
+<button mat-fab color="primary" routerLink="/pokemon-list">
+  <mat-icon>arrow_back</mat-icon>
+</button>
+<mat-card *ngIf="pokemon" style="width: 500px;">
+  <mat-card-content>
+    <mat-grid-list cols="2" rowHeight="200px">
+      <mat-grid-tile colspan="1" rowspan="1">
+        <div class="avatar">
+          <img mat-card-lg-image [src]="'assets/img/official-artwork/' + pokemon.id + '.png'"/>
+          <span>No. {{pokemon.id}}</span>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile colspan="1" rowspan="1">
+        <mat-list>
+          <mat-list-item>
+            <span>{{ pokemon.name }}</span>
+            <button mat-icon-button matTooltip="Basic" (click)="audio.play()">
+              <mat-icon>play_arrow</mat-icon>
+            </button>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-chip-set>
+              <mat-chip *ngFor="let type of pokemon.types">
+                {{type}}
+              </mat-chip>
+            </mat-chip-set>
+          </mat-list-item>
+          <mat-list-item>
+            <span>Taille: {{ pokemon.height }} m</span>
+          </mat-list-item>
+          <mat-list-item>
+            <span>Poids: {{ pokemon.weight }} kg</span>
+          </mat-list-item>
+        </mat-list>
+      </mat-grid-tile>
+      <mat-grid-tile colspan="2" rowspan="1">
+        {{ pokemon.description }}
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card-content>
+</mat-card>
+
+<audio autoplay #audio>
+  <source *ngIf="pokemon" [src]="'assets/audio/' + pokemon.id + '.mp3'" type="audio/mp3">
+</audio>
