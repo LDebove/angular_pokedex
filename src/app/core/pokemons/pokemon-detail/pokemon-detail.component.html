@@ -7,7 +7,7 @@
       <mat-grid-tile colspan="1" rowspan="1">
         <div class="avatar">
           <img mat-card-lg-image [src]="'assets/img/official-artwork/' + pokemon.id + '.png'"/>
-          <span>No. {{pokemon.id}}</span>
+          <span>No. {{pokemon.id | number:'3.0-0'}}</span>
         </div>
       </mat-grid-tile>
       <mat-grid-tile colspan="1" rowspan="1">
@@ -26,10 +26,10 @@
             </mat-chip-set>
           </mat-list-item>
           <mat-list-item>
-            <span>Taille: {{ pokemon.height }} m</span>
+            <span>Taille: {{ pokemon.height | number:'1.1-1' }} m</span>
           </mat-list-item>
           <mat-list-item>
-            <span>Poids: {{ pokemon.weight }} kg</span>
+            <span>Poids: {{ pokemon.weight | number:'1.1-1' }} kg</span>
           </mat-list-item>
         </mat-list>
       </mat-grid-tile>
