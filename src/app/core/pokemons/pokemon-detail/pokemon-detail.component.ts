@@ -26,16 +26,12 @@ export class PokemonDetailComponent implements OnInit {
   }
 
   setPokemonData(id: number): void {
+    this.pokemon = undefined;
     let subscription = this.pokedex.getPokemon(id).subscribe({
       next: (pokemon) => {
         this.pokemon = pokemon;
-        this.playAudio();
         subscription.unsubscribe();
       }
     });
-  }
-
-  playAudio(): void {
-    const audio = new Audio();
   }
 }
