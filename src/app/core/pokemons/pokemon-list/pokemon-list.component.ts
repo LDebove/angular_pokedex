@@ -32,7 +32,6 @@ export class PokemonListComponent implements AfterViewInit {
     });
   }
 
-  // TODO implémenter le infinite scroll pour les input type 'a' qui renvoient énormément de pokémons ==> donc il faut changer le onScroll
   onInput(target: EventTarget): void {
     let inputValue = (<HTMLInputElement>target).value;
     this.inputValue = inputValue;
