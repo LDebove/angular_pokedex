@@ -15,6 +15,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { PokedexComponent } from './pokedex/pokedex.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatInputModule } from '@angular/material/input';
+import { TeamComponent } from './team/team.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { MatInputModule } from '@angular/material/input';
     PokemonListComponent,
     PokemonDetailComponent,
     PokemonsComponent,
-    PokedexComponent
+    PokedexComponent,
+    TeamComponent
   ],
   imports: [
     CommonModule,
