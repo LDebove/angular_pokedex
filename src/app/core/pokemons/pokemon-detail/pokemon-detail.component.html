@@ -10,10 +10,12 @@
       <mat-grid-tile colspan="1" rowspan="1">
         <mat-list>
           <mat-list-item>
-            <span>{{ pokemon.name }}</span>
-            <button mat-icon-button matTooltip="Basic" (click)="audio.play()">
-              <mat-icon>play_arrow</mat-icon>
-            </button>
+            <div class="name">
+              <span>{{ pokemon.name }}</span>
+              <button mat-icon-button (click)="audio.play()">
+                <mat-icon>play_circle_outline</mat-icon>
+              </button>
+            </div>
           </mat-list-item>
           <mat-list-item>
             <mat-chip-set>
