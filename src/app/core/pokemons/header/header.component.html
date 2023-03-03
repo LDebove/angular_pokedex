@@ -1,1 +1,14 @@
-<button mat-button color="accent">Connexion</button>
+<mat-toolbar class="header">
+  <div *ngIf="!authenticated" class="authenticate">
+    <button mat-button color="accent" routerLink="/login">Connexion</button>
+    <button mat-button color="accent" routerLink="/signup">Inscription</button>
+  </div>
+  <div *ngIf="authenticated" class="status">
+    <span>Connecté</span>
+  </div>
+
+  <div class="tools">
+    <button mat-button color="accent" routerLink="/pokedex/1">Détails</button>
+    <button *ngIf="authenticated" mat-button color="accent" routerLink="/team">Equipe</button>
+  </div>
+</mat-toolbar>

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from '../environments/environment';
 import { LoginData } from '../models/authentication.model';
@@ -9,12 +10,15 @@ import { LoginData } from '../models/authentication.model';
 })
 export class AuthService {
 
-  private isAuthenticated: boolean = false;
+  private authenticated: boolean = false;
+  private authenticatedSubject = new Subject<boolean>();
   private accessToken: string = '';
   private refreshToken: string = '';
   private expiresIn: number = 0;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.authenticatedSubject.next(false);
+  }
 
   login(data: LoginData): Observable<any> {
     return this.http.post<any>(`${environment.api}/auth/login`, data);
@@ -24,8 +28,16 @@ export class AuthService {
     return this.http.post<any>(`${environment.api}/trainers`, data);
   }
 
-  getIsAuthenticated(): boolean {
-    return this.isAuthenticated;
+  IsAuthenticated(): boolean {
+    return this.authenticated;
+  }
+
+  setAuthenticatedSubject(authenticated: boolean): void {
+    this.authenticatedSubject.next(authenticated);
+  }
+
+  getAuthenticatedSubject(): Observable<boolean> {
+    return this.authenticatedSubject.asObservable();
   }
 
   getAccessToken(): string {
@@ -34,7 +46,9 @@ export class AuthService {
 
   setAccessToken(accessToken: string): void {
     this.accessToken = accessToken;
-    this.isAuthenticated = true;
+    localStorage.setItem('accessToken', accessToken);
+    this.authenticated = true;
+    this.authenticatedSubject.next(true);
   }
 
   setRefreshToken(refreshToken: string): void {
@@ -43,9 +57,5 @@ export class AuthService {
 
   setExpiresIn(expiresIn: number): void {
     this.expiresIn = expiresIn;
-    setTimeout(() => {
-      this.isAuthenticated = false;
-      this
-    }, expiresIn);
   }
 }

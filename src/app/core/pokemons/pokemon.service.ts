@@ -1,16 +1,16 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { Pokemon, PagedData } from 'src/app/models/pokemon.model';
 import { environment } from 'src/app/environments/environment';
-import { LoginData } from 'src/app/models/authentication.model';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PokemonService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private auth: AuthService) { }
 
   getPokemons(limit?: number, offset?: number, search?: string): Observable<PagedData<Pokemon>> {
     let params = new HttpParams();
@@ -24,13 +24,15 @@ export class PokemonService {
     return this.http.get<Pokemon>(`${environment.api}/pokemons/${id}`);
   }
 
-  // TODO modifier
-  getTeam(token: string): Observable<number[]> {
-    return this.http.get<number[]>(`${environment.api}/trainers/me/team`);
+  getTeam(): Observable<number[]> {
+    let token = localStorage.getItem('accessToken');
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    return this.http.get<number[]>(`${environment.api}/trainers/me/team`, {headers: headers});
   }
 
-  // TODO modifier
-  setTeam(token: string, teamIds: number[]): Observable<number[]> {
-    return this.http.put<number[]>(`${environment.api}/trainers/me/team`, teamIds);
+  setTeam(teamIds: number[]): Observable<number[]> {
+    let token = localStorage.getItem('accessToken');
+    let headers = new HttpHeaders().set('Authorization', 'Bearer ' + token);
+    return this.http.put<number[]>(`${environment.api}/trainers/me/team`, teamIds, {headers: headers});
   }
 }

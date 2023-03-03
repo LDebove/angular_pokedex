@@ -10,12 +10,11 @@ import { PokemonService } from '../pokemon.service';
 })
 export class TeamComponent implements OnInit {
   team: Pokemon[] = [];
-  token: string = '';
 
   constructor(private pokedex: PokemonService) { }
 
   ngOnInit(): void {
-    this.pokedex.getTeam(this.token).subscribe({
+    this.pokedex.getTeam().subscribe({
       next: (teamIds) => {
         let observables: Observable<Pokemon>[] = [];
         teamIds.forEach(id => {
