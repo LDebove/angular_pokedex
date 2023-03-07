@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { Pokemon, PagedData } from 'src/app/models/pokemon.model';
-import { environment } from 'src/app/environments/environment';
+import { environment } from 'src/environments/environment';
 import { AuthService } from 'src/app/services/auth.service';
 import { of } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
