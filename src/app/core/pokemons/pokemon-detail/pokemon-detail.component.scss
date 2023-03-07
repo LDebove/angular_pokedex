@@ -21,6 +21,16 @@
     display: flex;
     align-items: center;
   }
+
+  .description {
+    text-align: justify;
+  }
+
+  .team-button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
 }
 
 

@@ -32,10 +32,11 @@
           </mat-list-item>
         </mat-list>
       </mat-grid-tile>
-      <mat-grid-tile colspan="2" rowspan="1">
+      <mat-grid-tile class="description" colspan="2" rowspan="1">
         {{ pokemon.description }}
       </mat-grid-tile>
     </mat-grid-list>
+    <button *ngIf="authenticated" class="team-button" mat-button color="warn" (click)="addPokemonToTeam()">Ajouter à l'équipe</button>
   </mat-card-content>
   <audio autoplay #audio>
     <source [src]="'assets/audio/' + pokemon.id + '.mp3'" type="audio/mp3">

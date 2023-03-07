@@ -1,3 +1,7 @@
+<button class="back-button" mat-fab extended color="accent" routerLink="/pokemons">
+  <mat-icon>arrow_back</mat-icon>
+  Retour
+</button>
 <mat-card>
   <mat-card-header>
     <mat-card-title>Inscription</mat-card-title>
@@ -6,13 +10,17 @@
     <div class="form" [formGroup]="signup" (ngSubmit)="submitForm()">
       <mat-form-field>
         <mat-label>Mail</mat-label>
-        <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com">
+        <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com" (keyup.enter)="submitForm()">
       </mat-form-field>
       <mat-form-field>
         <mat-label>Mot de passe</mat-label>
-        <input type="password" matInput formControlName="password">
+        <input type="password" matInput formControlName="password" (keyup.enter)="submitForm()">
       </mat-form-field>
       <button mat-raised-button (click)="submitForm()">S'inscrire</button>
+      <div class="account">
+        <span>Déjà enregistré ? </span>
+        <button mat-raised-button (click)="redirectToLogin()">Connexion</button>
+      </div>
     </div>
   </mat-card-content>
 </mat-card>

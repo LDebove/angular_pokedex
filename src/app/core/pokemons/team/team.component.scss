@@ -14,13 +14,15 @@
 
   .pokemon {
     display: flex;
+    position: relative;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    cursor: pointer;
     border-radius: 5px;
 
-    &:hover {
-      background-color: #FFFFFF60;
+    .bottom-content {
+      display: flex;
+      align-items: center;
     }
   }
 }

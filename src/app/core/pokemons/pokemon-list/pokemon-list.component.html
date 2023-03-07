@@ -4,7 +4,7 @@
 </mat-form-field>
 
 <mat-nav-list id="pokemon-list" class="scrollable" role="list" infinite-scroll [scrollWindow]="false" (scrolled)="onScroll()" #list>
-  <mat-list-item *ngFor="let pokemon of pagedData?.data" role="listitem" routerLink="/pokedex/{{pokemon.id}}">
+  <mat-list-item *ngFor="let pokemon of pagedData?.data" role="listitem" routerLink="/pokemons/detail/{{pokemon.id}}">
     <img matListItemAvatar [src]="'assets/img/sprites/' + pokemon.id + '.png'"/>
     <span MatListItemTitle>{{pokemon.id}}. {{pokemon.name}}</span>
   </mat-list-item>

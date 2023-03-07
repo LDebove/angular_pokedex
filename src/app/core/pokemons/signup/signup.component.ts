@@ -29,9 +29,13 @@ export class SignupComponent {
           this.auth.setAccessToken(response.idToken);
           this.auth.setRefreshToken(response.refreshToken);
           this.auth.setExpiresIn(response.expiresIn);
-          this.router.navigate(['team']);
+          this.router.navigate(['pokemons', 'team']);
         }
       }
     });
+  }
+
+  redirectToLogin(): void {
+    this.router.navigate(['login']);
   }
 }

@@ -4,11 +4,11 @@
     <button mat-button color="accent" routerLink="/signup">Inscription</button>
   </div>
   <div *ngIf="authenticated" class="status">
-    <span>Connecté</span>
+    <button mat-button color="warn" (click)="logout()">Se déconnecter</button>
   </div>
 
   <div class="tools">
-    <button mat-button color="accent" routerLink="/pokedex/1">Détails</button>
-    <button *ngIf="authenticated" mat-button color="accent" routerLink="/team">Equipe</button>
+    <button mat-button color="accent" routerLink="/pokemons/pokedex/1">Détails</button>
+    <button *ngIf="authenticated" mat-button color="accent" routerLink="/pokemons/team">Equipe</button>
   </div>
 </mat-toolbar>

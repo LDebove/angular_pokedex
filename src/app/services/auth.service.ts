@@ -24,6 +24,12 @@ export class AuthService {
     return this.http.post<any>(`${environment.api}/auth/login`, data);
   }
 
+  logout(): void {
+    localStorage.removeItem('accessToken');
+    this.authenticated = false;
+    this.authenticatedSubject.next(false);
+  }
+
   signup(data: LoginData): Observable<any> {
     return this.http.post<any>(`${environment.api}/trainers`, data);
   }
@@ -57,5 +63,12 @@ export class AuthService {
 
   setExpiresIn(expiresIn: number): void {
     this.expiresIn = expiresIn;
+  }
+
+  autoLogin(): void {
+    let accessToken = localStorage.getItem('accessToken');
+    if(accessToken) {
+      this.setAccessToken(accessToken);
+    }
   }
 }

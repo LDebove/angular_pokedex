@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Pokemon } from 'src/app/models/pokemon.model';
+import { AuthService } from 'src/app/services/auth.service';
 import { PokemonService } from '../pokemon.service';
 
 @Component({
@@ -12,7 +13,9 @@ export class PokemonDetailComponent implements OnInit {
 
   pokemon?: Pokemon;
 
-  constructor(private route: ActivatedRoute, private pokedex: PokemonService) { }
+  authenticated: boolean = false;
+
+  constructor(private route: ActivatedRoute, private auth: AuthService, private pokedex: PokemonService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe({
@@ -21,6 +24,13 @@ export class PokemonDetailComponent implements OnInit {
         if(!isNaN(id)) {
           this.setPokemonData(id);
         }
+      }
+    });
+
+    this.authenticated = this.auth.IsAuthenticated();
+    this.auth.getAuthenticatedSubject().subscribe({
+      next: (authenticated) => {
+        this.authenticated = authenticated;
       }
     });
   }
@@ -33,5 +43,10 @@ export class PokemonDetailComponent implements OnInit {
         subscription.unsubscribe();
       }
     });
+  }
+
+  addPokemonToTeam(): void {
+    if(!this.pokemon) return;
+    this.pokedex.addPokemonToTeam(this.pokemon.id);
   }
 }
