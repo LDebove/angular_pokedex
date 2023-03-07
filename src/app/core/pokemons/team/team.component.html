@@ -1,0 +1,50 @@
+<mat-card *ngIf="team.length !== 0">
+  <mat-card-header>
+    <mat-card-title>Mon Equipe</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="team">
+      <div class="pokemon" *ngFor="let pokemon of team; let i = index">
+        <img mat-card-lg-image [src]="'assets/img/official-artwork/' + pokemon.id + '.png'"/>
+        <div class="bottom-content">
+          <button class="options-button" mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button *ngIf="i !== 0" mat-menu-item (click)="moveLeft(i)">
+              <mat-icon>chevron_left</mat-icon>
+              <span>Déplacer à gauche</span>
+            </button>
+            <button *ngIf="i !== team.length - 1" mat-menu-item (click)="moveRight(i)">
+              <mat-icon>chevron_right</mat-icon>
+              <span>Déplacer à droite</span>
+            </button>
+            <button mat-menu-item routerLink="/pokemons/detail/{{pokemon.id}}">
+              <mat-icon>info_outline</mat-icon>
+              <span>Informations</span>
+            </button>
+            <button mat-menu-item (click)="removePokemon(i)">
+              <mat-icon>remove_circle_outline</mat-icon>
+              <span>Supprimer</span>
+            </button>
+          </mat-menu>
+          <span>{{pokemon.name}}</span>
+        </div>
+      </div>
+      <div *ngIf="team.length < 6" class="pokemon">
+        <button mat-icon-button routerLink="/pokemons/detail/1">
+          <mat-icon>add_circle_outline</mat-icon>
+        </button>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<mat-card *ngIf="team.length === 0">
+  <mat-card-header>
+    <mat-card-title>Equipe vide</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    Pour ajouter un pokémon à l'équipe, cliquer sur un des pokémons de la liste et appuyer sur "Ajouter à l'équipe" en bas à droite de la fiche d'informations
+  </mat-card-content>
+</mat-card>
