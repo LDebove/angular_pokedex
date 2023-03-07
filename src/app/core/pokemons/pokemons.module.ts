@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
-import { SharedModule } from 'src/app/shared/shared.module';
 import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.component';
 import { PokemonsComponent } from './pokemons.component';
 import { RouterModule } from '@angular/router';
@@ -26,7 +25,6 @@ import { MatInputModule } from '@angular/material/input';
   ],
   imports: [
     CommonModule,
-    SharedModule,
     RouterModule,
     MatGridListModule,
     MatCardModule,
