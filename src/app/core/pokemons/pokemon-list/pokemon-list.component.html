@@ -3,10 +3,10 @@
   <input matInput type="text" (input)="onInput($event.target!)">
 </mat-form-field>
 
-<mat-list id="pokemon-list" class="scrollable" role="list" infinite-scroll [scrollWindow]="false" (scrolled)="onScroll()" #list>
+<mat-nav-list id="pokemon-list" class="scrollable" role="list" infinite-scroll [scrollWindow]="false" (scrolled)="onScroll()" #list>
   <mat-list-item *ngFor="let pokemon of pagedData?.data" role="listitem" routerLink="/pokedex/{{pokemon.id}}">
     <img matListItemAvatar [src]="'assets/img/sprites/' + pokemon.id + '.png'"/>
     <span MatListItemTitle>{{pokemon.id}}. {{pokemon.name}}</span>
   </mat-list-item>
-</mat-list>
+</mat-nav-list>
 
